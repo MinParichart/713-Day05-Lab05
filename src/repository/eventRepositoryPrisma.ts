@@ -83,17 +83,15 @@ export async function getAllEventsWithOrganizerPagination(
     where, 
     skip: pageSize * (pageNo - 1),
     take: pageSize,
-    select: {
-      id: true,
-      title : true, 
-      category: true,
-      // description: true, // ถ้าอยากให้มันแสดง description เพิ่มมา ใน .json ก็ใส่ description เข้าไป
-      organizerId: false,
-      organizer: {
-        select: {
-          name: true,
+    omit:{ 
+      organizerId : true
+    },
+    include : {
+        organizer: {
+          select: {
+            name: true,
+          },
         },
-      },
     },
   });
   const count = await prisma.event.count({ where }); 
