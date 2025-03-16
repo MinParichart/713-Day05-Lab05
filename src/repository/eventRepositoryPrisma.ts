@@ -8,7 +8,6 @@ export function getEventByCategory(category: string) {
     where: { category },
   });
 }
-
 export function getAllEvents() {
   return prisma.event.findMany();
 }

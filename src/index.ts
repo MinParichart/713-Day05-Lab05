@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import express from "express";
 import multer from 'multer';
+import authRoute from './routes/authRoutes';
 import eventRoute from './routes/eventRoute';
 dotenv.config();
 
@@ -22,6 +23,7 @@ const options: cors.CorsOptions = {
 app.use(cors(options));
 app.use(express.json());
 app.use('/events',eventRoute);
+app.use('/api/v1/auth',authRoute);
 // const port = 3000;
 const port = process.env.PORT || 3000;
 
