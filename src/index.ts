@@ -12,7 +12,8 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:5173',
   'https://713-lab06-git-newbranch-minparicharts-projects.vercel.app',
-  'https://713-lab06.vercel.app'
+  'https://713-lab06.vercel.app',
+  'https://713-lab06-21jj03wsa-minparicharts-projects.vercel.app'
 ];
 
 const options: cors.CorsOptions = {
