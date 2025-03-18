@@ -49,16 +49,39 @@ router.post('/admin', authMiddleware.protect, authMiddleware.checkAdmin, async (
       })
   })
   
+// router.post('/register', async (req, res) => {
+//       const registerRequest: RegisterRequest = req.body;
+//       try {
+//         const responseUser = await authService.registerUser(registerRequest);
+//         res.status(201).json({status: 'success', 
+//             user: {
+//                 id: responseUser.id,
+//                 organizerName: responseUser.organizer?.name || 'unknown',
+//                 username: responseUser.username,
+//                 roles: responseUser.roles.map((role: role) => role.name)
+//             }
+//         });
+//       } catch (error) {
+//           res.status(500).json({status: 'error', message: 'Internal server error'});
+//       }
+//   })
+
 router.post('/register', async (req, res) => {
-      const registerRequest: RegisterRequest = req.body;
-      try {
-          const response = await authService.registerUser(registerRequest);
-          res.status(201).json({status: 'success', user: 'User registered successfully'});
-      } catch (error) {
-          res.status(500).json({status: 'error', message: 'Internal server error'});
-      }
-  })
-        
-  
+        const registerRequest: RegisterRequest = req.body;
+            try {
+            const responseUser = await authService.registerUser(registerRequest);
+            res.status(201).json({status: 'success', 
+                user: {
+                    id: responseUser.id,
+                    organizerName: responseUser.organizer?.name || 'unknown',
+                    username: responseUser.username,
+                    roles: responseUser.roles.map((role: role) => role.name)
+                }
+            });   
+        } catch (error) {
+            res.status(500).json({status: 'error', message: 'Internal server error'});
+        }
+    })
+
 
 export default router;

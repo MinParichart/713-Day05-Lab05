@@ -16,16 +16,16 @@ export function findByUserId(userId: number) {
       return prisma.user.findUnique({
           where: {
               id: userId,
-          },
-          include: {
-              roles: true,
-              organizer: {
-                  include: {
-                      events: true,
-                  }
-              },
-          },
-      });
+        },    
+        include: {
+            roles: true,
+            organizer: {
+                include: {
+                    events: true,
+                },
+            },
+        },  
+      });            
   }
 
 export async function registerUser(organizerName: string,username: string, password: string,  roleNames: string[]) {
@@ -51,7 +51,14 @@ export async function registerUser(organizerName: string,username: string, passw
                       name: organizerName,
                   },
               },
-          },
-      });
-    }
-    
+          },   
+        include: {
+            roles: true,
+            organizer: {
+                include: {
+                    events: true,
+                },
+            },
+        },
+    });
+}    
