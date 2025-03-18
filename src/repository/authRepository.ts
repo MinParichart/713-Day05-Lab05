@@ -48,7 +48,7 @@ export async function registerUser(organizerName: string,username: string, passw
               },
               organizer: {
                   create: {
-                      name: organizerName,
+                      name: String(organizerName),
                   },
               },
           },   
@@ -62,3 +62,15 @@ export async function registerUser(organizerName: string,username: string, passw
         },
     });
 }    
+
+export async function updatePassword(userId: number, password: string) {
+        return prisma.user.update({
+            where: {
+                id: userId,
+            },
+            data: {
+                password: password,
+            },
+        });
+     }
+    

@@ -32,4 +32,7 @@ export function registerUser(registerRequest: RegisterRequest){
     return authRepo.registerUser(organizerName,username,bcrypt.hashSync(password), ['ROLE_USER']);
     }
 
-    
+export function updatePassword(userId: number, password: string){
+        return authRepo.updatePassword(userId, bcrypt.hashSync(password));
+    }
+            
